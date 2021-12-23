@@ -1,8 +1,6 @@
 package com.cloudmore.service;
 
 import com.cloudmore.dto.ClientDto;
-import com.cloudmore.message.model.KafkaClientMessage;
-import org.springframework.stereotype.Service;
 
 /**
  * ClientService
@@ -11,6 +9,6 @@ import org.springframework.stereotype.Service;
  */
 public interface ClientService {
 
-    ClientDto saveClient(KafkaClientMessage message);
+    ClientDto saveClient(ClientDto body);
 
 }

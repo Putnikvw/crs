@@ -1,7 +1,6 @@
 package com.cloudmore.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 
@@ -12,23 +11,13 @@ import java.math.BigDecimal;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ClientDto {
-    @JsonProperty("name")
     private String name;
-
-    @JsonProperty("surname")
     private String surname;
-
-    @JsonProperty("wage")
     private BigDecimal wage;
-
-    @JsonProperty("eventTime")
     private String eventTime;
 
-    public ClientDto(@JsonProperty("name") String name,
-                     @JsonProperty("surname")String surname,
-                     @JsonProperty("wage")BigDecimal wage,
-                     @JsonProperty("eventTime")String eventTime) {
 
+    public ClientDto(String name, String surname, BigDecimal wage, String eventTime) {
         this.name = name;
         this.surname = surname;
         this.wage = wage;

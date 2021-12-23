@@ -6,26 +6,26 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
- * ProducerService
+ * ClientRegistrationServiceProducer
  *
  * @author perun
  */
-@Service
+@Component
 public class ClientRegistrationServiceProducer {
 
-    private static final Logger logger = LoggerFactory.getLogger(ClientRegistrationServiceProducer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ClientRegistrationServiceProducer.class);
 
-    @Value("kafka.client-service")
-    private static String topic;
+    @Value("${kafka.client-service.topic}")
+    private String topic;
 
     @Autowired
     private KafkaTemplate<String, KafkaClientMessage> kafkaTemplate;
 
     public void sendClientMessage(KafkaClientMessage message) {
-        logger.info("Produce message -> {}", message);
-        this.kafkaTemplate.send(topic, message);
+        LOG.info("Produce message -> {}", message);
+        kafkaTemplate.send(topic, message);
     }
 }

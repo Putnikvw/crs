@@ -1,7 +1,6 @@
 package com.cloudmore.controller;
 
 import com.cloudmore.dto.ClientDto;
-import com.cloudmore.message.model.KafkaClientMessage;
 import com.cloudmore.service.ClientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * ClientServiceContrioller
+ * ClientRegistrationServiceController
  *
  * @author perun
  */
@@ -24,9 +23,9 @@ public class ClientRegistrationServiceController {
         this.clientService = clientService;
     }
 
-    @PostMapping("/client-service")
-    public ResponseEntity<ClientDto> createClient(@RequestBody KafkaClientMessage message) {
-        return ResponseEntity.ok(clientService.saveClient(message));
+    @PostMapping("/client")
+    public ResponseEntity<ClientDto> createClient(@RequestBody ClientDto dto) {
+        return ResponseEntity.ok(clientService.saveClient(dto));
     }
 
 }

@@ -3,7 +3,6 @@ package com.cloudmore.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -29,8 +28,7 @@ public class Client extends AbstractEntity {
     public Client() {
     }
 
-    public Client(Long id, LocalDateTime createAt, String createBy, LocalDateTime modifiedAt, String modifiedBy, String name, String surname, BigDecimal wage, Long eventTime) {
-        super(id, createAt, createBy, modifiedAt, modifiedBy);
+    public Client(String name, String surname, BigDecimal wage, Long eventTime) {
         this.name = name;
         this.surname = surname;
         this.wage = wage;

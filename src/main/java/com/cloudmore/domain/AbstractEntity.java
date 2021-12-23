@@ -1,8 +1,5 @@
 package com.cloudmore.domain;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -17,7 +14,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * AbstractEntity
@@ -44,17 +40,6 @@ abstract class AbstractEntity {
 
     @LastModifiedBy
     private String modifiedBy;
-
-    public AbstractEntity() {
-    }
-
-    public AbstractEntity(Long id, LocalDateTime createAt, String createBy, LocalDateTime modifiedAt, String modifiedBy) {
-        this.id = id;
-        this.createAt = createAt;
-        this.createBy = createBy;
-        this.modifiedAt = modifiedAt;
-        this.modifiedBy = modifiedBy;
-    }
 
     public Long getId() {
         return id;
@@ -94,18 +79,5 @@ abstract class AbstractEntity {
 
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AbstractEntity)) return false;
-        AbstractEntity that = (AbstractEntity) o;
-        return id.equals(that.id) && createAt.equals(that.createAt);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, createAt);
     }
 }
