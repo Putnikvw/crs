@@ -21,7 +21,6 @@ import java.time.LocalDateTime;
  * @author perun
  */
 @MappedSuperclass
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @EntityListeners(AuditingEntityListener.class)
 abstract class AbstractEntity {
 

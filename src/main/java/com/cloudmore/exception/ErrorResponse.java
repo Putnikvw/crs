@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author perun
  */
-public class ErrorResponse {
+public class ErrorResponse extends RuntimeException {
 
     private int code;
     private String status;

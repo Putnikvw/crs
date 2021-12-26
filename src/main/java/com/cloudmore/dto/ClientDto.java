@@ -2,6 +2,10 @@ package com.cloudmore.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 /**
@@ -11,9 +15,18 @@ import java.math.BigDecimal;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ClientDto {
+
+    @NotEmpty(message = "Name can't be empty and it should be at least 2 characters")
+    @Size(min = 2)
     private String name;
+
+    @NotEmpty(message = "Surname can't be empty and it should be at least 2 characters")
+    @Size(min = 2)
     private String surname;
+
+    @DecimalMin(value = "0.0")
     private BigDecimal wage;
+
     private String eventTime;
 
 

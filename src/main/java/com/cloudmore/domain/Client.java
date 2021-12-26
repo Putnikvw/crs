@@ -2,6 +2,7 @@ package com.cloudmore.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -13,16 +14,10 @@ import java.util.Objects;
 @Entity
 public class Client extends AbstractEntity {
 
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false)
     private String surname;
-
-    @Column(nullable = false)
     private BigDecimal wage;
-
-    @Column(nullable = false, name = "event_time")
+    @Column(name = "event_time")
     private Long eventTime;
 
     public Client() {

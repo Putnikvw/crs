@@ -32,12 +32,11 @@ public interface ClientMapper {
     KafkaClientMessage toKafkaMessage(ClientDto dto);
 
     default Long convertToEpoch(String source) {
-        return Instant.parse(source.replace(" ", "")).getEpochSecond();
+        return Instant.parse(source).toEpochMilli();
     }
 
     default String epochToString(Long epochTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_INSTANT;
-        return formatter.format(Instant.ofEpochSecond(epochTime));
+        return Instant.ofEpochMilli(epochTime).toString();
     }
 
     default BigDecimal roundWageValue(BigDecimal wage) {
