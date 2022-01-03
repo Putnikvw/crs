@@ -2,6 +2,8 @@ package com.cloudmore.mapper;
 
 import com.cloudmore.domain.Client;
 import com.cloudmore.dto.ClientDto;
+import com.cloudmore.exception.ClientServiceException;
+import com.cloudmore.exception.ParseEventTimeException;
 import com.cloudmore.message.model.KafkaClientMessage;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -10,7 +12,6 @@ import org.mapstruct.Mappings;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Instant;
-import java.time.format.DateTimeFormatter;
 
 /**
  * ClientMapper
@@ -32,7 +33,11 @@ public interface ClientMapper {
     KafkaClientMessage toKafkaMessage(ClientDto dto);
 
     default Long convertToEpoch(String source) {
-        return Instant.parse(source).toEpochMilli();
+        try {
+            return Instant.parse(source).toEpochMilli();
+        } catch (Exception ex) {
+            throw new ParseEventTimeException("Cannot parse eventTime");
+        }
     }
 
     default String epochToString(Long epochTime) {
