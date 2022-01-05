@@ -3,12 +3,14 @@ package com.cloudmore.mapper;
 import com.cloudmore.builder.ClientBuilder;
 import com.cloudmore.domain.Client;
 import com.cloudmore.dto.ClientDto;
+import com.cloudmore.exception.ParseEventTimeException;
 import com.cloudmore.message.model.KafkaClientMessage;
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import static com.cloudmore.builder.ClientBuilder.*;
 
@@ -21,7 +23,6 @@ public class ClientMapperTest implements WithAssertions {
 
     private ClientMapper mapper = Mappers.getMapper(ClientMapper.class);
 
-
     @Test
     public void toDomainTest() {
         ClientBuilder clientBuilder = aClient().getFullClient();
@@ -29,6 +30,19 @@ public class ClientMapperTest implements WithAssertions {
         Client expected = clientBuilder.getClientModel();
 
         assertThat(result).usingRecursiveComparison().isEqualTo(expected);
+    }
+
+    @Test
+    public void toDomainTest_ThrowParseEventTimeException() {
+        ClientBuilder clientBuilder = aClient()
+                .withName(DEFAULT_NAME)
+                .withSurname(DEFAULT_SURNAME)
+                .withWage(new BigDecimal("23.4"))
+                .withEventTime(LocalDateTime.now().toString());
+
+        assertThatExceptionOfType(ParseEventTimeException.class)
+                .isThrownBy(() -> mapper.toDomain(clientBuilder.getClientDto()))
+                .withMessage("Cannot parse eventTime");
     }
 
     @Test

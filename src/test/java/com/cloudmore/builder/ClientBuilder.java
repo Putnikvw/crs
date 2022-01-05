@@ -19,7 +19,7 @@ public class ClientBuilder {
     public static final String DEFAULT_NAME = "James";
     public static final String DEFAULT_SURNAME = "Bond";
     public static final BigDecimal DEFAULT_WAGE = new BigDecimal("124.65");
-    public static final String DEFAULT_EVENT_TIME = Instant.ofEpochMilli(LocalDateTime.now().getSecond()).toString();
+    public static final String DEFAULT_EVENT_TIME = Instant.ofEpochMilli(LocalDateTime.now().getNano()).toString();
 
     private String name;
     private String surname;
