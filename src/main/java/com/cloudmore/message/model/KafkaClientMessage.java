@@ -3,7 +3,7 @@ package com.cloudmore.message.model;
 import java.math.BigDecimal;
 
 /**
- * ClientRegistry
+ * KafkaClientMessage
  *
  * @author perun
  */
@@ -12,9 +12,6 @@ public class KafkaClientMessage {
     private String surname;
     private BigDecimal wage;
     private String eventTime;
-
-    public KafkaClientMessage() {
-    }
 
     public KafkaClientMessage(String name, String surname, BigDecimal wage, String eventTime) {
         this.name = name;

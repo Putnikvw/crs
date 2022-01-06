@@ -1,10 +1,21 @@
 version: '3.7'
 
 services:
+  app:
+    image: app
+    container_name: client_service
+    ports:
+      - "8080:8080"
+    networks:
+      - crs-network
+    depends_on:
+      - mysql_cloudmore
   mysql_cloudmore:
     container_name: mysql_cloudmore
     image: mysql:8.0
     restart: always
+    networks:
+      - crs-network
     ports:
       - "3307:3306"
     environment:
@@ -19,6 +30,8 @@ services:
     container_name: zookeeper
     ports:
       - "2181:2181"
+    networks:
+      - crs-network
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
 
@@ -27,14 +40,25 @@ services:
     container_name: kafka
     ports:
       - "9092:9092"
+      - "9094:9094"
     environment:
       - KAFKA_BROKER_ID=1
-      - KAFKA_LISTENERS=PLAINTEXT://:9092
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
-      - ADVERTISED_HOST_NAME=localhost
+      - KAFKA_LISTENERS=LISTENER_BOB://kafka:9094,LISTENER_FRED://kafka:9092
+      - KAFKA_ADVERTISED_LISTENERS=LISTENER_BOB://kafka:9094,LISTENER_FRED://localhost:9092
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=LISTENER_BOB:PLAINTEXT,LISTENER_FRED:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=LISTENER_BOB
+      - KAFKA_AUTO_CREATE_TOPICS_ENABLE=false
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS=100
+
+    networks:
+      - crs-network
     depends_on:
       - zookeeper
 volumes:
   crs_data:
+networks:
+  crs-network:
+    driver: bridge

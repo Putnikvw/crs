@@ -1,8 +1,10 @@
 package com.cloudmore.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 /**
@@ -12,23 +14,22 @@ import java.math.BigDecimal;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ClientDto {
-    @JsonProperty("name")
+
+    @NotEmpty(message = "Name can't be empty and it should be at least 2 characters")
+    @Size(min = 2)
     private String name;
 
-    @JsonProperty("surname")
+    @NotEmpty(message = "Surname can't be empty and it should be at least 2 characters")
+    @Size(min = 2)
     private String surname;
 
-    @JsonProperty("wage")
+    @DecimalMin(value = "0.0")
     private BigDecimal wage;
 
-    @JsonProperty("eventTime")
     private String eventTime;
 
-    public ClientDto(@JsonProperty("name") String name,
-                     @JsonProperty("surname")String surname,
-                     @JsonProperty("wage")BigDecimal wage,
-                     @JsonProperty("eventTime")String eventTime) {
 
+    public ClientDto(String name, String surname, BigDecimal wage, String eventTime) {
         this.name = name;
         this.surname = surname;
         this.wage = wage;
