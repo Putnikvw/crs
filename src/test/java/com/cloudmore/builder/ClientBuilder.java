@@ -2,7 +2,6 @@ package com.cloudmore.builder;
 
 import com.cloudmore.domain.Client;
 import com.cloudmore.dto.ClientDto;
-import com.cloudmore.mapper.ClientMapper;
 import com.cloudmore.message.model.KafkaClientMessage;
 
 import java.math.BigDecimal;

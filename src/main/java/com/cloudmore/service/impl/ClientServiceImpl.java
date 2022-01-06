@@ -7,15 +7,12 @@ import com.cloudmore.message.model.KafkaClientMessage;
 import com.cloudmore.message.producer.ClientRegistrationServiceProducer;
 import com.cloudmore.repository.ClientServiceRepository;
 import com.cloudmore.service.ClientService;
-import com.cloudmore.utils.Util;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
-import static com.cloudmore.utils.Util.*;
+import static com.cloudmore.utils.Util.addTaxes;
 
 /**
  * ClientServiceImpl

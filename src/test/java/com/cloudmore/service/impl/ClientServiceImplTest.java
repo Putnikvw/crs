@@ -42,7 +42,7 @@ class ClientServiceImplTest {
     private final long taxValue = 10L;
 
     @Test
-    void saveClient() {
+    void saveClientTest() {
         KafkaClientMessage message = clientBuilder.getKafkaMessageClient();
         when(mapper.toKafkaMessage(any())).thenReturn(message);
         doNothing().when(kafkaService).sendClientMessage(message);

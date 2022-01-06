@@ -6,21 +6,23 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.6.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
+
     <groupId>com.cloudmore</groupId>
     <artifactId>crs</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>client registration service</name>
     <description>client registration service</description>
+
     <properties>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <java.version>11</java.version>
         <openapi.version>1.5.2</openapi.version>
         <testcontainer.version>1.16.2</testcontainer.version>
         <assertj.version>3.22.0</assertj.version>
-        <!--        db properties-->
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -39,14 +41,13 @@
             <artifactId>spring-kafka</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -57,6 +58,11 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${openapi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>2.1.6</version>
         </dependency>
         <!--        tests-->
         <dependency>
@@ -77,13 +83,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>${assertj.version}</version>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
 
     <build>
@@ -136,7 +139,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <apiDocsUrl>http://localhost:8084/v3/api-docs</apiDocsUrl>
+                            <apiDocsUrl>http://localhost:8080/v3/api-docs</apiDocsUrl>
                             <outputFileName>openapi.json</outputFileName>
                             <outputDir>${project.build.directory}</outputDir>
                         </configuration>
@@ -145,6 +148,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>

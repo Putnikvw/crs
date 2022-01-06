@@ -4,6 +4,7 @@ import com.cloudmore.builder.ClientBuilder;
 import com.cloudmore.controller.ClientRegistrationServiceController;
 import com.cloudmore.dto.ClientDto;
 import com.cloudmore.service.ClientService;
+import com.cloudmore.util.Util;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import com.cloudmore.util.Util;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -40,7 +40,6 @@ public class ClientServiceControllerTest {
 
     @MockBean
     private ClientService service;
-
 
     @Test
     public void saveClientTest() throws Exception {

@@ -2,7 +2,6 @@ package com.cloudmore.mapper;
 
 import com.cloudmore.domain.Client;
 import com.cloudmore.dto.ClientDto;
-import com.cloudmore.exception.ClientServiceException;
 import com.cloudmore.exception.ParseEventTimeException;
 import com.cloudmore.message.model.KafkaClientMessage;
 import org.mapstruct.Mapper;

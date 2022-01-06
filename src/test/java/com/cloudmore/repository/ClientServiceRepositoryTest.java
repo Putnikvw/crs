@@ -30,15 +30,13 @@ public class ClientServiceRepositoryTest {
     private TestEntityManager testEntityManager;
 
     @Test
-    public void saveClient() {
+    public void saveClientTest() {
         Client savedClient = saveAndFlushClient();
         Client fetchedClient = repository.findAll().get(0);
 
         assertNotNull(fetchedClient);
         assertThat(fetchedClient).usingRecursiveComparison().isEqualTo(savedClient);
     }
-
-
 
     private Client saveAndFlushClient() {
         Client client = ClientBuilder.aClient().getFullClient().getClientModel();
